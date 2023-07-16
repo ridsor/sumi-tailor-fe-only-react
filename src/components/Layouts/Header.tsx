@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaBars, FaCircle, FaUser } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [hamburger, setHamburger] = useState<boolean>(false);
@@ -31,19 +32,19 @@ const Header = () => {
               } transition-all top-[110%] lg:block lg:static absolute bg-white lg:bg-inherit shadow-md lg:shadow-none p-4 lg:p-0 w-full max-w-[250px] lg:w-auto lg:max-w-none lg:rounded-none rounded-md lg:border-none border`}>
               <ul className="flex gap-x-10 text-[#0f0f0f] lg:text-gray-400 flex-col lg:flex-row gap-y-3">
                 <li>
-                  <a href="">Home</a>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <a href="">About Us</a>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
-                  <a href="">Gallery</a>
+                  <Link to="/gallery">Gallery</Link>
                 </li>
                 <li>
-                  <a href="">Services</a>
+                  <Link to="/services">Services</Link>
                 </li>
                 <li>
-                  <a href="">Contact</a>
+                  <Link to="/contact-us">Contact Us</Link>
                 </li>
               </ul>
             </nav>
