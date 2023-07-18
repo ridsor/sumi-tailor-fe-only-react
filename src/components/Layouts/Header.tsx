@@ -6,8 +6,8 @@ const Header = () => {
   const [hamburger, setHamburger] = useState<boolean>(false);
 
   return (
-    <header>
-      <div className="container px-2 py-4 mx-auto">
+    <header className="absolute top-0 left-0 right-0 z-50">
+      <div className="container px-2 py-4">
         <article className="bg-[#0f0f0f] w-full flex items-center text-white p-2.5 rounded-full lg:justify-between relative">
           <div className="flex items-center order-1 px-2 left gap-x-1">
             <FaCircle className="fill-white" size="1rem" />
@@ -50,9 +50,9 @@ const Header = () => {
             </nav>
           </div>
           <div className="order-2 ml-auto right lg:order-3 lg:ml-0">
-            <a href="" className="bg-[#2a28f0] p-3 rounded-full block">
+            <Link to="/login" className="bg-[#2a28f0] p-3 rounded-full block">
               <FaUser className="fill-white" size="1.2rem" />
-            </a>
+            </Link>
           </div>
         </article>
       </div>

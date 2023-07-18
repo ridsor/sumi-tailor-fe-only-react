@@ -5,30 +5,35 @@ const index = () => {
   return (
     <>
       <section>
-        <div className="container pt-16 h-[500px] [background-size:400px] bg-[80%_4rem] bg-no-repeat px-4 lg:bg-[url('/src/assets/img/background-home.png')]">
-          <article className="w-full lg:w-1/2">
-            <h1 className="mb-4 text-4xl tracking-wide font-pt-serif">
-              Make Your Life Easier with Smart Home
-            </h1>
-            <p className="text-[#3d3d3d] w-5/6 mb-6">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt
-              impedit quaerat cumque alias qui exercitationem in minus aliquid
-              modi quo!
-            </p>
-            <div className="flex gap-x-3">
-              <a
-                href="/orders"
-                className="text-[#ccc] bg-[#0f0f0f] py-3 px-5 rounded-full flex items-center gap-x-1.5">
-                Cek Pesanan
-                <FaArrowRightLong className="fill-white" />
-              </a>
-              <a
-                href="/orders"
-                className="text-[#0f0f0f] border border-[#0f0f0f] bg-white py-3 px-5 rounded-full flex items-center gap-x-1.5">
-                Selengkapnya
-              </a>
-            </div>
-          </article>
+        <div className="container">
+          <div className="row pt-36 min-h-[600px] h-auto [background-size:400px] bg-[80%_8rem] bg-no-repeat px-4 lg:bg-[url('/src/assets/img/background-home.png')]">
+            <article className="w-full lg:w-1/2">
+              <h1 className="mb-4 text-3xl lg:text-4xl tracking-wide font-pt-serif">
+                Selamat Datang di Sumi Tailor <br />
+                Kami Tempat Fashion Bertemu Kesempurnaan!
+              </h1>
+              <p className="text-[#3d3d3d] w-5/6 mb-6">
+                Apakah Anda lelah berjuang dengan pakaian yang tidak pas? Apakah
+                Anda bermimpi mengenakan pakaian yang disesuaikan dengan bentuk
+                dan gaya tubuh unik Anda? Tidak perlu mencari lagi! Tim penjahit
+                terampil dan berpengalaman kami hadir untuk mewujudkan aspirasi
+                mode Anda.
+              </p>
+              <div className="flex gap-x-3 mb-6">
+                <a
+                  href="/orders"
+                  className="text-[#ccc] bg-[#0f0f0f] py-3 px-5 rounded-full flex items-center gap-x-1.5 hover:bg-[#333] focus:ring focus:ring-[rgba(0,0,0,.3)]">
+                  Cek Pesanan
+                  <FaArrowRightLong className="fill-white" />
+                </a>
+                <a
+                  href="/orders"
+                  className="text-[#0f0f0f] border border-[#0f0f0f] bg-white py-3 px-5 rounded-full flex items-center gap-x-1.5">
+                  Selengkapnya
+                </a>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
       <div id="contact-us" className="fixed bottom-[6.2rem] right-10">

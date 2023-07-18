@@ -14,8 +14,9 @@ const Footer = () => {
           <div className="pt-6 pb-3 px-7 lg:pb-0">
             <h5 className="text-base font-bold leading-none">Alamat</h5>
             <p className="mb-6 tracking-tighter">
-              Jl. Ir. M. Putuhena No.138, RT.RW 007/RW.RT 013, Wayame, Kec. Tlk.
-              Ambon, Kota Ambon, Maluku 97234
+              Jln. Ir. M. Putuhena Perumnas Wayame Blok 3 Baru No. 138, Desa
+              Wayane RT007/RW013, Wayame, Kec. Tlk. Ambon, Kota Ambon, Maluku
+              97234
             </p>
             <div className="flex items-center mb-6 text-slate-400 gap-x-3">
               <FaPhone className="fill-[#3d3d3d]" /> 0813-4400-7725
