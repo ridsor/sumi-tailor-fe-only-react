@@ -8,7 +8,7 @@ const index = () => {
       <section className="bg-[#DEDEDE] relative">
         <div className="container">
           <div className="w-[300px] h-[95%] absolute left-[20%] top-0 bg-[#D0D0D0] border-b-[.5rem] border-[#2a28f0] lg:block hidden"></div>
-          <article className="row lg:min-h-[600px] px-4 pt-36 pb-16 relative z-10 text-[#3d3d3d] after:content-[''] after:clear-both after:block">
+          <article className="row lg:min-h-[600px] px-4 lg:px-8 pt-36 pb-16 relative z-10 text-[#3d3d3d] after:content-[''] after:clear-both after:block">
             <div className="absolute top-[10rem] left-[37rem] w-20 h-12 bg-[rgb(42,40,240,.3)] hidden lg:block"></div>
             <div className="absolute top-[30rem] right-[10%] lg:top-[57%] lg:left-[22rem] block">
               <TbNeedleThread size="1.5rem" />

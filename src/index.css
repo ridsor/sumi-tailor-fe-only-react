@@ -11,3 +11,44 @@
     font-size: 14px;
   }
 }
+
+/* Owl Carousel */
+.owl-carousel {
+  display: flex !important;
+  flex-direction: column;
+}
+.owl-stage {
+}
+.owl-stage-outer {
+  order: 2;
+}
+.owl-dots {
+  @apply mb-7 rounded-md gap-3 p-1.5 w-fit;
+  background-color: #f8f8f8;
+  overflow-x: auto;
+  max-width: fit-content;
+  width: 100%;
+  order: 1;
+  display: flex;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.owl-dots::-webkit-scrollbar {
+  display: none;
+}
+
+.owl-item:last-child {
+  @apply pr-0.5;
+}
+.owl-dot {
+  @apply block rounded-md;
+  transition: 0.5s;
+}
+
+.owl-dot.active {
+  background-color: #fff !important;
+}
+
+.owl-dot > span {
+  @apply px-3 py-1 inline-block;
+}
