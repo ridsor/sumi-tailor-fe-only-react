@@ -2,7 +2,7 @@ const index = () => {
   return (
     <>
       <section className="bg-[#F1F2F3]">
-        <div className="container">
+        <div className="container px-4">
           <div className="pt-36 h-[1200px] pb-16">
             <article className="grid h-full gap-4 p-4 bg-white shadow-md rounded-xl">
               <div className="col-start-1 col-end-3 row-start-1 row-end-3 bg-red-500 shadow-md rounded-xl"></div>

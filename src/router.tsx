@@ -5,6 +5,7 @@ import AboutUs from "./pages/AboutUs";
 import Gallery from "./pages/Gallery";
 import Service from "./pages/Service";
 import ContactUs from "./pages/ContactUs";
+import Orders from "./pages/Orders/index";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: 'orders',
+        element: <Orders/>,
       },
       {
         path: "*",
