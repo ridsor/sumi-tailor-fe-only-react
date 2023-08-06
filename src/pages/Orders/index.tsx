@@ -7,6 +7,7 @@ import axios from 'axios';
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 interface Order {
+	id?: number;
 	full_name: string;
 	category: string;
 	price: number;
@@ -18,15 +19,37 @@ interface Order {
 export default () => {
 	const [orders, setOrders] = useState<Order[]>([]);
 
-	const handleBtnOrderCancelled = async (id:number) => {
-		await axios.delete(backendURL+'/orders/'+id);
-		await handleGetAllOrdersAPI();
+	const handleDeleteOrderAPI = async (id: number | undefined) => {
+		const data = await axios.delete(backendURL+'/api/orders/'+id).then(res => res.data);
+		if(data.status !== 'success') {
+			console.error(data.message);
+		}
+	}
+
+	const handleBtnOrderCancelled = async (order: Order) => {
+		await handleDeleteOrderAPI(order.id);
+		const data = await axios.post(backendURL+'/api/orders-history/',{
+			full_name: order.full_name,
+			category: order.category,
+			price: order.price,
+			status: 'Pesan telah Dibatalkan',
+		}).then(res => res.data);
+		if(data.status !== 'success') {
+			console.error(data.message);
+		}
 	};
 	
 	const handleGetAllOrdersAPI = async () => {
 		const backendURL = import.meta.env.VITE_BACKEND_URL;
-		const data = await axios.get(backendURL+'/orders').then(res => res.data);
+		const data = await axios.get(backendURL+'/api/orders').then(res => res.data);
 		setOrders(data);
+	}
+	
+	const handleBtnOrderFinishedOrUnfinished = async (id:number) => {
+		const data = await axios.put(backendURL+'/api/orders/finished/'+id).then(res => res.data);
+		if(data.status !== 'success') {
+			console.error(data.message);
+		}
 	}
 
 	const handleBtnActionOrder = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -34,6 +57,26 @@ export default () => {
 			e.currentTarget.nextElementSibling?.classList.remove('!pointer-events-auto','!opacity-100','active');
 		} else {
 			e.currentTarget.nextElementSibling?.classList.add('!pointer-events-auto','!opacity-100','active');
+		}
+	}
+
+	const handleBtnAccepted = async (order: Order) => {
+		await handleDeleteOrderAPI(order.id);
+		const data = await axios.post(backendURL+'/api/orders-history',{
+			full_name: order.full_name,
+			category: order.category,
+			price: order.price,
+			status: 'Pesan telah Diterima',
+		}).then(res => res.data);
+		if(data.status !== 'success') {
+			console.error(data.message);
+		}
+	}
+
+	const handleBtnOrderHistoryDelete = async (id: number) => {
+		const data = await axios.delete(backendURL+'/api/order-history'+id).then(res => res.data);
+		if(data.status !== 'success') {
+			console.error(data.message);
 		}
 	}
 
@@ -47,6 +90,10 @@ export default () => {
 		dots[2].children[0].innerHTML = 'Riwayat';
 		dots[2].children[0].setAttribute('tabindex','3');
 	});
+
+	useEffect(()=>{
+		handleGetAllOrdersAPI();
+	},[handleBtnOrderCancelled,handleBtnOrderFinishedOrUnfinished,handleBtnAccepted,handleBtnOrderHistoryDelete]);
 
 	return (
 		<>
@@ -81,7 +128,8 @@ export default () => {
 										<div className="absolute top-[calc(100%+.5rem)] right-0 w-[250px] pointer-events-none opacity-0 transition-all ease-in z-10">
 											<ul className='bg-white p-1 gap-1 flex flex-col text-[12px] border rounded-md text-[#172838]'>
 												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
+													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
+													onClick={() => handleBtnOrderFinishedOrUnfinished(0)}>
 														<FaCircleCheck /> 
 														Selesai
 													</button>
@@ -93,51 +141,8 @@ export default () => {
 													</button>
 												</li>
 												<li>
-													<button onClick={() => handleBtnOrderCancelled(0)} className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
-														<FaTimesCircle /> 
-														Batalkan
-													</button>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div className="order  flex border rounded-md shadow-sm flex-wrap">
-									<div className="flex flex-col relative items-center px-8 lg:px-10 py-2.5 after:content-[''] after:block after:h-[70%] w-1 after:border-r after:absolute after:-translate-y-1/2 after:top-1/2 after:right-0 order-1 self-center">
-										<div className="day font-medium leading-none">Sen</div>
-										<div className="tgl font-medium text-3xl leading-none">30</div>
-										<div className="time leading-none text-[12px]">14:13</div>
-									</div>
-									<div className="order-2 flex-1 lg:flex-none">
-										<div className="px-3 lg:px-6 py-2.5 flex flex-col justify-center min-h-full md:w-[200px]">
-											<div className="name text-[13px] font-medium text-gray-600 mb-1">Firman Kudmas</div>
-											<div className="category leading-none text-[13px]">Kategori: Baju</div>
-											<div className="price text-[13px] text-gray-600 font-medium">Rp10000</div>
-										</div>
-									</div>
-									<div className="order-4 lg:order-3 py-2.5 text-[13px] self-center lg:flex-1 p-2 lg:p-0 lg:border-t-0 border-t">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat ut, rem quod, deserunt provident ipsam expedita velit accusamus natus officia excepturi quasi culpa et eius ratione illo sunt, necessitatibus porro!
-									</div>
-									<div className="order-3 lg:order-4 text-lg self-center mx-3 lg:mx-6 flex relative">
-										<button className="bg-[#F8F8F8] p-3 rounded-md shadow-sm border relative" onClick={handleBtnActionOrder}>
-											<FaEllipsisVertical />
-										</button>
-										<div className="absolute top-[calc(100%+.5rem)] right-0 w-[250px] pointer-events-none opacity-0 transition-all ease-in z-10">
-											<ul className='bg-white p-1 gap-1 flex flex-col text-[12px] border rounded-md text-[#172838]'>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
-														<FaCircleCheck /> 
-														Selesai
-													</button>
-												</li>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
-														<FaPenToSquare /> 
-														Edit
-													</button>
-												</li>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
+													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
+													onClick={() => handleBtnOrderCancelled({id:1,full_name:'',category:'',price:1,description:'',created_at:'',updated_at:''})}>
 														<FaTimesCircle /> 
 														Batalkan
 													</button>
@@ -171,13 +176,15 @@ export default () => {
 										<div className="absolute top-[calc(100%+.5rem)] right-0 w-[250px] pointer-events-none opacity-0 transition-all ease-in z-10">
 											<ul className='bg-white p-1 gap-1 flex flex-col text-[12px] border rounded-md text-[#172838]'>
 												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
+													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
+													onClick={() => handleBtnAccepted({id:1,full_name:'',category:'',price:1,description:'',created_at:'',updated_at:''})}>
 														<FaClipboardCheck /> 
 														Diterima
 													</button>
 												</li>
 												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
+													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
+													onClick={() => handleBtnOrderFinishedOrUnfinished(0)}>
 														<FaArrowRotateLeft /> 
 														Belum Selesai
 													</button>
@@ -189,7 +196,8 @@ export default () => {
 													</button>
 												</li>
 												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
+													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
+													onClick={() => handleBtnOrderCancelled({id:1,full_name:'',category:'',price:1,description:'',created_at:'',updated_at:''})}>
 														<FaTimesCircle /> 
 														Batalkan
 													</button>
@@ -229,45 +237,8 @@ export default () => {
 													</button>
 												</li>
 												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
-														<FaRegTrashCan /> 
-														Hapus
-													</button>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div className="order flex border rounded-md shadow-sm flex-wrap">
-									<div className="flex flex-col relative items-center px-8 lg:px-10 py-2.5 after:content-[''] after:block after:h-[70%] w-1 after:border-r after:absolute after:-translate-y-1/2 after:top-1/2 after:right-0 order-1 self-center">
-										<div className="day font-medium leading-none">Sen</div>
-										<div className="tgl font-medium text-3xl leading-none">30</div>
-										<div className="time leading-none text-[12px]">14:13</div>
-									</div>
-									<div className="order-2 flex-1 lg:flex-none">
-										<div className="px-3 lg:px-6 py-2.5 flex flex-col justify-center min-h-full md:w-[200px]">
-											<div className="name text-[13px] font-medium text-gray-600 mb-1">Firman Kudmas</div>
-											<div className="category leading-none text-[13px]">Kategori: Baju</div>
-											<div className="price text-[13px] text-gray-600 font-medium">Rp10000</div>
-										</div>
-									</div>
-									<div className="order-4 lg:order-3 py-2.5 text-[13px] self-center lg:flex-1 p-2 lg:p-0 w-full border-t lg:border-t-0">
-										<div className="status font-bold">Pesanan telah Diterima!</div>
-									</div>
-									<div className="order-3 lg:order-4 text-lg self-center mx-3 lg:mx-6 flex relative">
-										<button className="bg-[#F8F8F8] p-3 rounded-md shadow-sm border relative" onClick={handleBtnActionOrder}>
-											<FaEllipsisVertical />
-										</button>
-										<div className="absolute top-[calc(100%+.5rem)] right-0 w-[250px] pointer-events-none opacity-0 transition-all ease-in z-10">
-											<ul className='bg-white p-1 gap-1 flex flex-col text-[12px] border rounded-md text-[#172838]'>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
-														<FaPenToSquare /> 
-														Edit
-													</button>
-												</li>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
+													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
+													onClick={() => handleBtnOrderHistoryDelete(0)}>
 														<FaRegTrashCan /> 
 														Hapus
 													</button>
