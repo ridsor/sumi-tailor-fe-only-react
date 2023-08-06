@@ -17,8 +17,6 @@
   display: flex !important;
   flex-direction: column;
 }
-.owl-stage {
-}
 .owl-stage-outer {
   order: 2;
 }
