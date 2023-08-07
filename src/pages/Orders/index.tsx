@@ -1,4 +1,4 @@
-import {FaArrowRotateLeft, FaCircleCheck, FaClipboardCheck, FaEllipsisVertical, FaPenToSquare, FaRegTrashCan} from 'react-icons/fa6';
+import {FaArrowRotateLeft, FaCircleCheck, FaEllipsisVertical, FaPenToSquare} from 'react-icons/fa6';
 import {FaTimesCircle} from 'react-icons/fa';
 import OwlCarousel from 'react-owl-carousel';  
 import 'owl.carousel/dist/assets/owl.carousel.css';  
@@ -18,22 +18,9 @@ interface Order {
 
 export default () => {
 	const [orders, setOrders] = useState<Order[]>([]);
-
-	const handleDeleteOrderAPI = async (id: number | undefined) => {
+	
+	const handleBtnOrderCancelled = async (id:number) => {
 		const data = await axios.delete(backendURL+'/api/orders/'+id).then(res => res.data);
-		if(data.status !== 'success') {
-			console.error(data.message);
-		}
-	}
-
-	const handleBtnOrderCancelled = async (order: Order) => {
-		await handleDeleteOrderAPI(order.id);
-		const data = await axios.post(backendURL+'/api/orders-history/',{
-			full_name: order.full_name,
-			category: order.category,
-			price: order.price,
-			status: 'Pesan telah Dibatalkan',
-		}).then(res => res.data);
 		if(data.status !== 'success') {
 			console.error(data.message);
 		}
@@ -60,26 +47,6 @@ export default () => {
 		}
 	}
 
-	const handleBtnAccepted = async (order: Order) => {
-		await handleDeleteOrderAPI(order.id);
-		const data = await axios.post(backendURL+'/api/orders-history',{
-			full_name: order.full_name,
-			category: order.category,
-			price: order.price,
-			status: 'Pesan telah Diterima',
-		}).then(res => res.data);
-		if(data.status !== 'success') {
-			console.error(data.message);
-		}
-	}
-
-	const handleBtnOrderHistoryDelete = async (id: number) => {
-		const data = await axios.delete(backendURL+'/api/order-history'+id).then(res => res.data);
-		if(data.status !== 'success') {
-			console.error(data.message);
-		}
-	}
-
 	useEffect(() => {
 		// Owl Carousel
 		const dots = document.querySelectorAll('.owl-dot');
@@ -87,13 +54,11 @@ export default () => {
 		dots[0].children[0].setAttribute('tabindex','1');
 		dots[1].children[0].innerHTML = 'Selesai';
 		dots[1].children[0].setAttribute('tabindex','2');
-		dots[2].children[0].innerHTML = 'Riwayat';
-		dots[2].children[0].setAttribute('tabindex','3');
 	});
 
 	useEffect(()=>{
 		handleGetAllOrdersAPI();
-	},[handleBtnOrderCancelled,handleBtnOrderFinishedOrUnfinished,handleBtnAccepted,handleBtnOrderHistoryDelete]);
+	},[handleBtnOrderCancelled,handleBtnOrderFinishedOrUnfinished]);
 
 	return (
 		<>
@@ -142,7 +107,7 @@ export default () => {
 												</li>
 												<li>
 													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
-													onClick={() => handleBtnOrderCancelled({id:1,full_name:'',category:'',price:1,description:'',created_at:'',updated_at:''})}>
+													onClick={() => handleBtnOrderCancelled(0)}>
 														<FaTimesCircle /> 
 														Batalkan
 													</button>
@@ -177,13 +142,6 @@ export default () => {
 											<ul className='bg-white p-1 gap-1 flex flex-col text-[12px] border rounded-md text-[#172838]'>
 												<li>
 													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
-													onClick={() => handleBtnAccepted({id:1,full_name:'',category:'',price:1,description:'',created_at:'',updated_at:''})}>
-														<FaClipboardCheck /> 
-														Diterima
-													</button>
-												</li>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
 													onClick={() => handleBtnOrderFinishedOrUnfinished(0)}>
 														<FaArrowRotateLeft /> 
 														Belum Selesai
@@ -197,50 +155,9 @@ export default () => {
 												</li>
 												<li>
 													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
-													onClick={() => handleBtnOrderCancelled({id:1,full_name:'',category:'',price:1,description:'',created_at:'',updated_at:''})}>
+													onClick={() => handleBtnOrderCancelled(0)}>
 														<FaTimesCircle /> 
 														Batalkan
-													</button>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="orders grid [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] lg:[grid-template-columns:repeat(auto-fill,minmax(400px,1fr))] gap-2 w-full">
-								<div className="order flex border rounded-md shadow-sm flex-wrap">
-									<div className="flex flex-col relative items-center px-8 lg:px-10 py-2.5 after:content-[''] after:block after:h-[70%] w-1 after:border-r after:absolute after:-translate-y-1/2 after:top-1/2 after:right-0 order-1 self-center">
-										<div className="day font-medium leading-none">Sen</div>
-										<div className="tgl font-medium text-3xl leading-none">30</div>
-										<div className="time leading-none text-[12px]">14:13</div>
-									</div>
-									<div className="order-2 flex-1 lg:flex-none">
-										<div className="px-3 lg:px-6 py-2.5 flex flex-col justify-center min-h-full md:w-[200px]">
-											<div className="name text-[13px] font-medium text-gray-600 mb-1">Firman Kudmas</div>
-											<div className="category leading-none text-[13px]">Kategori: Baju</div>
-											<div className="price text-[13px] text-gray-600 font-medium">Rp10000</div>
-										</div>
-									</div>
-									<div className="order-4 lg:order-3 py-2.5 text-[13px] self-center lg:flex-1 p-2 lg:p-0 w-full border-t lg:border-t-0">
-										<div className="status font-bold">Pesanan telah Diterima!</div>
-									</div>
-									<div className="order-3 lg:order-4 text-lg self-center mx-3 lg:mx-6 flex relative">
-										<button className="bg-[#F8F8F8] p-3 rounded-md shadow-sm border relative" onClick={handleBtnActionOrder}>
-											<FaEllipsisVertical />
-										</button>
-										<div className="absolute top-[calc(100%+.5rem)] right-0 w-[250px] pointer-events-none opacity-0 transition-all ease-in z-10">
-											<ul className='bg-white p-1 gap-1 flex flex-col text-[12px] border rounded-md text-[#172838]'>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'>
-														<FaPenToSquare /> 
-														Edit
-													</button>
-												</li>
-												<li>
-													<button className='hover:bg-[#F8F8F8] px-2.5 w-full text-left flex items-center gap-x-2'
-													onClick={() => handleBtnOrderHistoryDelete(0)}>
-														<FaRegTrashCan /> 
-														Hapus
 													</button>
 												</li>
 											</ul>
