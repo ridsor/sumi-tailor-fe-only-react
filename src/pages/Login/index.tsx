@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 const backendURL = import.meta.env.BACKEND_URL;
 
 interface InputsLogin {
