@@ -66,7 +66,7 @@ export default ({
           </div>
         </div>
       </div>
-      <div className="order-4 lg:order-3 py-2.5 text-[13px] self-center lg:flex-1 p-2 lg:p-0 lg:border-t-0 border-t">
+      <div className="order-4 lg:order-3 py-2.5 text-[13px] self-center w-full lg:w-0 lg:flex-1 p-2 lg:p-0 lg:border-t-0 border-t">
         {description ? description : "-"}
       </div>
       <div className="order-3 lg:order-4 text-lg self-center mx-3 lg:mx-6 flex relative">

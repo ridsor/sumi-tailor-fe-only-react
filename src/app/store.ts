@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import orderFinishedReducer from "../pages/Orders/orderFinishedSlice";
+import orderUnfinishedReducer from "../pages/Orders/orderUnfinishedSlice";
 
 const store = configureStore({
   reducer: {
     orderFinished: orderFinishedReducer,
+    orderUnfinished: orderUnfinishedReducer,
   },
 });
 

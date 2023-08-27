@@ -8,6 +8,10 @@ import {
   orderFinishedSelectors,
 } from "../../pages/Orders/orderFinishedSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  getOrdersUnfinished,
+  orderUnfinishedSelectors,
+} from "../../pages/Orders/orderUnfinishedSlice";
 
 interface Order {
   id: number;
@@ -27,6 +31,9 @@ export default () => {
   const ordersFinished = useAppSelector<Order[]>(
     orderFinishedSelectors.selectAll
   );
+  const ordersUnfinished = useAppSelector<Order[]>(
+    orderUnfinishedSelectors.selectAll
+  );
 
   // Paginate
   const totalItemsdOrderFinished = useAppSelector<number>(
@@ -37,6 +44,15 @@ export default () => {
   );
   const currentPageOrderFinished = useAppSelector<number>(
     (state) => state.orderFinished.currentPage
+  );
+  const totalItemsdOrderUnfinished = useAppSelector<number>(
+    (state) => state.orderUnfinished.totalItems
+  );
+  const totalPagesdOrderUnfinished = useAppSelector<number>(
+    (state) => state.orderUnfinished.totalPages
+  );
+  const currentPageOrderUnfinished = useAppSelector<number>(
+    (state) => state.orderUnfinished.currentPage
   );
 
   var sliderSettings = {
@@ -56,11 +72,23 @@ export default () => {
       })
     );
 
+  const handleChangeCurrentPageOrderUnfinished = (page: number) =>
+    dispatch(
+      getOrdersUnfinished({
+        currentPage: page,
+        totalItems: totalItemsdOrderUnfinished,
+      })
+    );
+
   useEffect(() => {
     dispatch(
       getOrdersFinished({
-        totalItems: 5,
         currentPage: currentPageOrderFinished,
+      })
+    );
+    dispatch(
+      getOrdersUnfinished({
+        currentPage: currentPageOrderUnfinished,
       })
     );
   }, [dispatch]);
@@ -77,18 +105,39 @@ export default () => {
   return (
     <Slider {...sliderSettings}>
       <div className="orders unfinished !flex flex-col gap-2 w-full pb-10 p-1">
-        <Order
-          timestamp={1674716715000}
-          name="Ulan"
-          category="Baju"
-          price={20000}
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-              ut, rem quod, deserunt provident ipsam expedita velit accusamus
-              natus officia excepturi quasi culpa et eius ratione illo sunt,
-              necessitatibus porro!"
-          finished={0}
-        />
-        {/* <Pagination /> */}
+        {ordersUnfinished.length > 0 ? (
+          <Pagination
+            totalPages={totalPagesdOrderUnfinished}
+            currentPage={currentPageOrderUnfinished}
+            handleChangeCurrentPage={handleChangeCurrentPageOrderUnfinished}
+          />
+        ) : (
+          ""
+        )}
+        {ordersUnfinished.length > 0 ? (
+          ordersUnfinished.map((order) => (
+            <Order
+              key={order.id}
+              timestamp={order.updated_at}
+              name={order.name}
+              category={order.category}
+              price={order.price}
+              description={order.description}
+              finished={order.finished}
+            />
+          ))
+        ) : (
+          <>Data Pesanan tidak ditemukan</>
+        )}
+        {ordersUnfinished.length > 0 ? (
+          <Pagination
+            totalPages={totalPagesdOrderUnfinished}
+            currentPage={currentPageOrderUnfinished}
+            handleChangeCurrentPage={handleChangeCurrentPageOrderUnfinished}
+          />
+        ) : (
+          ""
+        )}
       </div>
       <div className="orders finished !flex flex-col gap-2 pb-10 w-full p-1">
         {ordersFinished.length > 0 ? (
@@ -109,7 +158,7 @@ export default () => {
               category={order.category}
               price={order.price}
               description={order.description}
-              finished={1}
+              finished={order.finished}
             />
           ))
         ) : (

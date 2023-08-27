@@ -26,8 +26,8 @@ interface Paginate {
   currentPage: number;
 }
 
-export const getOrdersFinished = createAsyncThunk(
-  "ordersFinished/getOrdersFinished",
+export const getOrdersUnfinished = createAsyncThunk(
+  "ordersUnfinished/getOrdersUnfinished",
   async ({
     currentPage = 1,
     totalItems = 10,
@@ -37,7 +37,7 @@ export const getOrdersFinished = createAsyncThunk(
   }) => {
     const res = await axios.get(
       backendURL +
-        `/api/orders?finished=1&_sort=id&_order=desc&_page=${currentPage}&_limit=${totalItems}`
+        `/api/orders?finished=0&_sort=id&_order=desc&_page=${currentPage}&_limit=${totalItems}`
     );
 
     const result: { data: Order[] } & Paginate = {
@@ -51,13 +51,13 @@ export const getOrdersFinished = createAsyncThunk(
   }
 );
 
-const orderFinishedEntity = createEntityAdapter<Order>({
+const orderUnfinishedEntity = createEntityAdapter<Order>({
   selectId: (order) => order.id,
 });
 
-export const orderFinishedSlice = createSlice({
+export const orderUnfinishedSlice = createSlice({
   name: "orderFinished",
-  initialState: orderFinishedEntity.getInitialState<Paginate>({
+  initialState: orderUnfinishedEntity.getInitialState<Paginate>({
     totalItems: 10,
     totalPages: 1,
     currentPage: 1,
@@ -65,9 +65,9 @@ export const orderFinishedSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
-      getOrdersFinished.fulfilled,
+      getOrdersUnfinished.fulfilled,
       (state, action: PayloadAction<{ data: Order[] } & Paginate>) => {
-        orderFinishedEntity.setAll(state, action.payload.data);
+        orderUnfinishedEntity.setAll(state, action.payload.data);
         state.totalItems = action.payload.totalItems;
         state.totalPages = action.payload.totalPages;
         state.currentPage = action.payload.currentPage;
@@ -76,6 +76,8 @@ export const orderFinishedSlice = createSlice({
   },
 });
 
-export const orderFinishedSelectors =
-  orderFinishedEntity.getSelectors<RootState>((state) => state.orderFinished);
-export default orderFinishedSlice.reducer;
+export const orderUnfinishedSelectors =
+  orderUnfinishedEntity.getSelectors<RootState>(
+    (state) => state.orderUnfinished
+  );
+export default orderUnfinishedSlice.reducer;

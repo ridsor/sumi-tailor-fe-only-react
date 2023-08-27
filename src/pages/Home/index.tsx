@@ -1,10 +1,37 @@
 import { FaArrowRightLong, FaArrowUpLong } from "react-icons/fa6";
 import logoWhatsapp from "../../assets/img/icons/logo-whatsapp.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const index = () => {
-  const [color, setColor] = useState("red");
+  const [chatWa, setChatWa] = useState<string>("");
+
+  const getFormatChatWa = () => {
+    let result = null;
+    const now = Date.now();
+    const time = parseInt(
+      Intl.DateTimeFormat("id-ID", {
+        hour: "numeric",
+      }).format(now)
+    );
+
+    if (time >= 18) {
+      result = "Malam";
+    } else if (time >= 15) {
+      result = "Sore";
+    } else if (time >= 11) {
+      result = "Siang";
+    } else {
+      result = "Pagi";
+    }
+
+    setChatWa(`Selamat ${result} Pak/Ibu`);
+  };
+
+  useEffect(() => {
+    getFormatChatWa();
+  }, []);
+
   return (
     <>
       <section>
@@ -42,7 +69,10 @@ const index = () => {
         </div>
       </section>
       <div id="contact-us" className="fixed bottom-[6.2rem] right-10">
-        <a href="">
+        <a
+          href={`https://wa.me/6282244007725?text='${chatWa}'`}
+          target="_blank"
+        >
           <div className="w-10 aspect-square bg-[#2BB741] p-1 rounded-full shadow-md">
             <img src={logoWhatsapp} alt="" />
           </div>
