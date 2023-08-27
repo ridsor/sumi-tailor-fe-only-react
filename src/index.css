@@ -25,13 +25,29 @@
   .orders.unfinished > div:first-child {
     @apply mb-3;
   }
+}
 
-  @keyframes animate-pagination {
-    0% {
-      transform: translateX();
-    }
-    100% {
-    }
+.nextpage-animation {
+  animation: nextpage 200ms;
+}
+.previouspage-animation {
+  animation: previouspage 200ms;
+}
+
+@keyframes nextpage {
+  0% {
+    transform: translateX(1rem);
+  }
+  100% {
+    transform: translateX(0rem);
+  }
+}
+@keyframes previouspage {
+  0% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    transform: translateX(0rem);
   }
 }
 
