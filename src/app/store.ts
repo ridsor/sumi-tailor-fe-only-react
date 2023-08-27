@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import orderFinishedReducer from "../pages/Orders/orderFinishedSlice";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    orderFinished: orderFinishedReducer,
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

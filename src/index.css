@@ -12,41 +12,66 @@
   }
 }
 
+@layer utilities {
+  .pagination .active {
+    background-color: #0f0f0f;
+    color: #fff;
+  }
+  .orders.unfinished > div:last-child,
+  .orders.finished > div:last-child {
+    @apply mt-3;
+  }
+  .orders.finished > div:first-child,
+  .orders.unfinished > div:first-child {
+    @apply mb-3;
+  }
+
+  @keyframes animate-pagination {
+    0% {
+      transform: translateX();
+    }
+    100% {
+    }
+  }
+}
+
 /* Owl Carousel */
-.owl-carousel {
+.slick-slider {
   display: flex !important;
   flex-direction: column;
 }
-.owl-stage-outer {
+.slick-list {
   order: 2;
 }
-.owl-dots {
+.slick-dots {
   @apply mb-7 rounded-md gap-3 p-1.5 w-fit;
   background-color: #f8f8f8;
   overflow-x: auto;
   max-width: fit-content;
   width: 100%;
   order: 1;
-  display: flex;
+  display: flex !important;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-.owl-dots::-webkit-scrollbar {
+
+.slick-dots::-webkit-scrollbar {
   display: none;
 }
 
-.owl-item:last-child {
+.slick-dots > li:last-child {
   @apply pr-0.5;
 }
-.owl-dot {
+
+.slick-dots > li > button {
   @apply block rounded-md;
   transition: 0.5s;
 }
 
-.owl-dot.active {
+.slick-dots > li.slick-active > button {
   background-color: #fff !important;
 }
 
-.owl-dot > span {
-  @apply px-3 py-1 inline-block;
+.slick-dots > li > button {
+  @apply px-3 py-1 inline-block font-semibold;
 }

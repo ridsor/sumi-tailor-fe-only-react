@@ -1,7 +1,10 @@
 import { FaArrowRightLong, FaArrowUpLong } from "react-icons/fa6";
 import logoWhatsapp from "../../assets/img/icons/logo-whatsapp.svg";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const index = () => {
+  const [color, setColor] = useState("red");
   return (
     <>
       <section>
@@ -20,17 +23,19 @@ const index = () => {
                 mode Anda.
               </p>
               <div className="flex gap-x-3 mb-6">
-                <a
-                  href="/orders"
-                  className="text-[#ccc] bg-[#0f0f0f] py-3 px-5 rounded-full flex items-center gap-x-1.5 hover:bg-[#333] focus:ring focus:ring-[rgba(0,0,0,.3)]">
+                <Link
+                  to="/orders"
+                  className="text-[#ccc] bg-[#0f0f0f] py-3 px-5 rounded-full flex items-center gap-x-1.5 hover:bg-[#333] focus:ring focus:ring-[rgba(0,0,0,.3)]"
+                >
                   Cek Pesanan
                   <FaArrowRightLong className="fill-white" />
-                </a>
-                <a
-                  href="/orders"
-                  className="text-[#0f0f0f] border border-[#0f0f0f] bg-white py-3 px-5 rounded-full flex items-center gap-x-1.5">
+                </Link>
+                <Link
+                  to="/about-us"
+                  className="text-[#0f0f0f] border border-[#0f0f0f] bg-white py-3 px-5 rounded-full flex items-center gap-x-1.5"
+                >
                   Selengkapnya
-                </a>
+                </Link>
               </div>
             </article>
           </div>
