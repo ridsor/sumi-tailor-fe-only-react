@@ -1,3 +1,4 @@
+import React, { useRef, useState } from "react";
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -17,6 +18,27 @@ export default ({
   currentPage,
   handleChangeCurrentPage,
 }: Props) => {
+  const nextPageRef = useRef<HTMLButtonElement>(null);
+  const previousPageRef = useRef<HTMLButtonElement>(null);
+  const [pageAnimation, setPageAnimation] = useState<number>();
+
+  const handleNextPage = () => {
+    clearTimeout(pageAnimation);
+    nextPageRef.current?.classList.add("nextpage-animation");
+    const animate = setTimeout(() => {
+      nextPageRef.current?.classList.remove("nextpage-animation");
+    }, 200);
+    setPageAnimation(animate);
+  };
+  const handlePreviousPage = () => {
+    clearTimeout(pageAnimation);
+    previousPageRef.current?.classList.add("previouspage-animation");
+    const animate = setTimeout(() => {
+      previousPageRef.current?.classList.remove("previouspage-animation");
+    }, 200);
+    setPageAnimation(animate);
+  };
+
   return (
     <div className="pagination flex justify-center flex-row gap-3 font-semibold flex-wrap">
       <div className="w-full lg:w-fit flex justify-center gap-3">
@@ -31,8 +53,12 @@ export default ({
           ""
         )}
         <button
+          ref={previousPageRef}
           disabled={currentPage < 2}
-          onClick={() => handleChangeCurrentPage(currentPage - 1)}
+          onClick={() => {
+            handlePreviousPage();
+            handleChangeCurrentPage(currentPage - 1);
+          }}
           className="leading-none aspect-square w-9 flex justify-center items-center bg-gray-200 text-base rounded-full text-[#0F0F0F]"
         >
           <FaAngleLeft />
@@ -40,7 +66,10 @@ export default ({
       </div>
       {currentPage >= 3 ? (
         <button
-          onClick={() => handleChangeCurrentPage(currentPage - 2)}
+          onClick={() => {
+            handlePreviousPage();
+            handleChangeCurrentPage(currentPage - 2);
+          }}
           className="leading-none aspect-square w-9 flex justify-center items-center bg-transparent text-base rounded-full text-[#0F0F0F]"
         >
           <span>{currentPage - 2}</span>
@@ -50,7 +79,10 @@ export default ({
       )}
       {currentPage > 1 ? (
         <button
-          onClick={() => handleChangeCurrentPage(currentPage - 1)}
+          onClick={() => {
+            handlePreviousPage();
+            handleChangeCurrentPage(currentPage - 1);
+          }}
           className="leading-none aspect-square w-9 flex justify-center items-center bg-transparent text-base rounded-full text-[#0F0F0F]"
         >
           <span>{currentPage - 1}</span>
@@ -66,7 +98,10 @@ export default ({
       </button>
       {currentPage < totalPages ? (
         <button
-          onClick={() => handleChangeCurrentPage(currentPage + 1)}
+          onClick={() => {
+            handleNextPage();
+            handleChangeCurrentPage(currentPage + 1);
+          }}
           className="leading-none aspect-square w-9 flex justify-center items-center bg-transparent text-base rounded-full text-[#0F0F0F]"
         >
           <span>{currentPage + 1}</span>
@@ -76,7 +111,10 @@ export default ({
       )}
       {currentPage <= totalPages - 2 ? (
         <button
-          onClick={() => handleChangeCurrentPage(currentPage + 2)}
+          onClick={() => {
+            handleNextPage();
+            handleChangeCurrentPage(currentPage + 2);
+          }}
           className="leading-none aspect-square w-9 flex justify-center items-center bg-transparent text-base rounded-full text-[#0F0F0F]"
         >
           <span>{currentPage + 2}</span>
@@ -86,8 +124,12 @@ export default ({
       )}
       <div className="w-full lg:w-fit flex justify-center gap-3">
         <button
+          ref={nextPageRef}
           disabled={currentPage >= totalPages}
-          onClick={() => handleChangeCurrentPage(currentPage + 1)}
+          onClick={() => {
+            handleNextPage();
+            handleChangeCurrentPage(currentPage + 1);
+          }}
           className="leading-none aspect-square w-9 flex justify-center items-center bg-gray-200 text-base rounded-full text-[#0F0F0F]"
         >
           <FaAngleRight />
