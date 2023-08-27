@@ -3,18 +3,18 @@ const index = () => {
     <>
       <section className="bg-[#F1F2F3]">
         <div className="container px-4">
-          <div className="pt-36 h-[1200px] pb-16">
-            <article className="grid h-full gap-4 p-4 bg-white shadow-md rounded-xl">
-              <div className="col-start-1 col-end-3 row-start-1 row-end-3 bg-red-500 shadow-md rounded-xl"></div>
-              <div className="col-start-3 row-start-1 bg-green-500 shadow-md rounded-xl"></div>
-              <div className="col-start-4 row-start-1 bg-yellow-500 shadow-md rounded-xl"></div>
-              <div className="col-start-3 col-end-5 row-start-2 bg-blue-500 shadow-md rounded-xl"></div>
-              <div className="col-start-5 row-start-1 row-end-3 bg-orange-500 shadow-md rounded-xl"></div>
-              <div className="col-start-1 row-start-3 row-end-5 bg-orange-500 shadow-md rounded-xl"></div>
-              <div className="col-start-2 col-end-4 row-start-3 bg-blue-500 shadow-md rounded-xl"></div>
-              <div className="col-start-2 row-start-4 bg-yellow-500 shadow-md rounded-xl"></div>
-              <div className="col-start-3 row-start-4 bg-green-500 shadow-md rounded-xl"></div>
-              <div className="col-start-4 col-end-6 row-start-3 row-end-5 bg-red-500 shadow-md rounded-xl"></div>
+          <div className="pt-36 pb-16">
+            <article className="grid h-full gap-4 p-4 bg-white shadow-md rounded-xl min-h-[1000px] md:lg-gallery-grid gallery-grid">
+              <div className="[grid-area:a] bg-red-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:b] bg-green-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:c] bg-yellow-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:d] bg-blue-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:e] bg-orange-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:f] bg-orange-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:g] bg-blue-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:h] bg-yellow-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:i] bg-green-500 shadow-md rounded-xl"></div>
+              <div className="[grid-area:j] bg-red-500 shadow-md rounded-xl"></div>
             </article>
           </div>
         </div>

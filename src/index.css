@@ -13,6 +13,28 @@
 }
 
 @layer utilities {
+  .lg-gallery-grid {
+    grid-template:
+      "a a b c e"
+      "a a d d e"
+      "f g g j j"
+      "f h i j j";
+  }
+
+  .gallery-grid {
+    grid-template:
+      "a a" 200px
+      "a a" 200px
+      "b c" 200px
+      "d d" 200px
+      "e f" 200px
+      "e f" 200px
+      "g g" 200px
+      "h i" 200px
+      "j j" 200px
+      "j j" 200px;
+  }
+
   .pagination .active {
     background-color: #0f0f0f;
     color: #fff;
