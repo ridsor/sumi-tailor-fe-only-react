@@ -34,12 +34,12 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: 'orders',
-        element: <Orders/>,
+        path: "orders",
+        element: <Orders />,
       },
       {
-        path: 'login',
-        element: <Login/>,
+        path: "login",
+        element: <Login />,
       },
       {
         path: "*",
