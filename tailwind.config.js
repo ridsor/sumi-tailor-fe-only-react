@@ -10,9 +10,14 @@ export default {
       container: {
         center: true,
       },
+      colors: {
+        one: "#483C32",
+        two: "#B3CBA6",
+        three: "#FFFFF0",
+      },
     },
     fontFamily: {
-      "pt-serif": ["PT Serif", "serif"],
+      one: ["Josefin Sans", "sans-serif"],
     },
   },
   plugins: [],

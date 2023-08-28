@@ -34,15 +34,15 @@ const index = () => {
 
   return (
     <>
-      <section>
+      <section className="bg-three">
         <div className="container">
           <div className="row pt-36 min-h-[600px] h-auto [background-size:400px] bg-[80%_8rem] bg-no-repeat px-4 lg:bg-[url('/src/assets/img/background-home.png')]">
             <article className="w-full lg:w-1/2">
-              <h2 className="mb-4 text-3xl lg:text-4xl tracking-wide font-pt-serif">
+              <h2 className="mb-4 text-3xl lg:text-4xl tracking-wide font-one text-one">
                 Selamat Datang di Sumi Tailor <br />
                 Kami Tempat Fashion Bertemu Kesempurnaan!
               </h2>
-              <p className="text-[#3d3d3d] w-5/6 mb-6">
+              <p className="text-one w-5/6 mb-6">
                 Apakah Anda lelah berjuang dengan pakaian yang tidak pas? Apakah
                 Anda bermimpi mengenakan pakaian yang disesuaikan dengan bentuk
                 dan gaya tubuh unik Anda? Tidak perlu mencari lagi! Tim penjahit
@@ -52,14 +52,14 @@ const index = () => {
               <div className="flex gap-x-3 mb-6">
                 <Link
                   to="/orders"
-                  className="text-[#ccc] bg-[#0f0f0f] py-3 px-5 rounded-full flex items-center gap-x-1.5 hover:bg-[#333] focus:ring focus:ring-[rgba(0,0,0,.3)]"
+                  className="text-three bg-two py-3 px-5 rounded-full flex items-center gap-x-1.5 hover:bg-[#db9f87] focus:ring focus:ring-[rgba(0,0,0,.3)]"
                 >
                   Cek Pesanan
-                  <FaArrowRightLong className="fill-white" />
+                  <FaArrowRightLong className="fill-three" />
                 </Link>
                 <Link
                   to="/about-us"
-                  className="text-[#0f0f0f] border border-[#0f0f0f] bg-white py-3 px-5 rounded-full flex items-center gap-x-1.5"
+                  className="text-two border border-two hover:bg-[#fdfdf2] py-3 px-5 rounded-full flex items-center gap-x-1.5"
                 >
                   Selengkapnya
                 </Link>
