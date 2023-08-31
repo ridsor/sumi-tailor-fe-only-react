@@ -1,5 +1,6 @@
 import { FaArrowRightLong, FaArrowUpLong } from "react-icons/fa6";
 import logoWhatsapp from "../../assets/img/icons/logo-whatsapp.svg";
+import home1 from "../../assets/img/home1.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -36,7 +37,7 @@ const index = () => {
     <>
       <section className="bg-three">
         <div className="container">
-          <div className="row pt-36 min-h-[600px] h-auto [background-size:400px] bg-[80%_8rem] bg-no-repeat px-4 lg:bg-[url('/src/assets/img/background-home.png')]">
+          <div className="row pt-36 min-h-[600px] h-auto px-4 flex flex-wrap">
             <article className="w-full lg:w-1/2">
               <h2 className="mb-4 text-3xl lg:text-4xl tracking-wide font-one text-one">
                 Selamat Datang di Sumi Tailor <br />
@@ -52,17 +53,24 @@ const index = () => {
               <div className="flex gap-x-3 mb-6">
                 <Link
                   to="/orders"
-                  className="text-three bg-two py-3 px-5 rounded-full flex items-center gap-x-1.5 hover:bg-[#db9f87] focus:ring focus:ring-[rgba(0,0,0,.3)]"
+                  className="text-three bg-two py-3 px-5 rounded-full flex items-center gap-x-1.5 hover:bg-four focus:ring focus:ring-[rgba(179,203,166,.5)]"
                 >
                   Cek Pesanan
                   <FaArrowRightLong className="fill-three" />
                 </Link>
                 <Link
                   to="/about-us"
-                  className="text-two border border-two hover:bg-[#fdfdf2] py-3 px-5 rounded-full flex items-center gap-x-1.5"
+                  className="text-two border border-two hover:bg-four hover:text-three py-3 px-5 rounded-full flex items-center gap-x-1.5 focus:ring focus:ring-[rgba(179,203,166,.5)]"
                 >
                   Selengkapnya
                 </Link>
+              </div>
+            </article>
+            <article className="w-full lg:w-1/2">
+              <div className="flex justify-center">
+                <div className="w-[400px]">
+                  <img src={home1} alt="" className="w-full h-full" />
+                </div>
               </div>
             </article>
           </div>
