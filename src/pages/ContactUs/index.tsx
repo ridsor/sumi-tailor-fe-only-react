@@ -22,68 +22,73 @@ const Index = () => {
 
   return (
     <>
-      <section>
+      <section className="bg-three">
         <div className="container">
           <div className="relative pb-16 mx-auto lg:w-11/12 pt-36">
-            <div className="w-0.5 h-32 bg-[#f8f9fa] absolute top-1/2 left-0 -translate-y-1/2 hidden lg:block">
-              <div className="w-full bg-black h-4/6"></div>
+            <div className="w-0.5 h-32 absolute top-1/2 left-0 -translate-y-1/2 hidden lg:flex items-center">
+              <div className="w-full bg-two h-4/6"></div>
             </div>
             <article className="px-4 lg:pl-24">
-              <h2 className="mb-8 text-3xl font-pt-serif">
-                Punya proyek fesyen? Perlu perubahan untuk menyempurnakan
+              <h2 className="mb-8 text-3xl font-one">
+                Punya proyek fashion? Perlu perubahan untuk menyempurnakan
                 pakaian Anda? Hubungi kami melalui salah satu halaman berikut,
-                dan mari wujudkan impian fesyen Anda.
+                dan mari wujudkan impian fashion Anda.
               </h2>
               <form action="">
-                <div className="relative pt-6 mb-6 form-input">
+                <div className="relative mb-6 form-input">
                   <input
                     type="text"
                     name="nama_lengkap"
-                    className="w-full max-w-lg border bg-[#F8F9FA] outline-none focus:ring-gray-600 focus:ring-2 px-4 py-2 font-medium peer text-[#3d3d3d] rounded-sm"
+                    className="w-full max-w-lg border bg-[#F0F4F3] outline-none px-4 py-2 font-medium peer rounded-sm"
                     onChange={handleChangeInput}
                     required
                     autoComplete="off"
                   />
                   <label
                     className={`${
-                      inputs.nama_lengkap ? "left-0 top-0 " : "left-4 top-8 "
-                    }absolute font-medium transition-all peer-focus:left-0 peer-focus:top-0 z-10 ease-in text-[#3d3d3d]`}>
+                      inputs.nama_lengkap ? "left-0 -top-5 " : "left-4 top-2 "
+                    }absolute font-medium transition-all peer-focus:left-0 peer-focus:-top-5 z-10 ease-in`}
+                  >
                     Nama Lengkap
                   </label>
                 </div>
-                <div className="relative pt-6 mb-6 form-input">
+                <div className="relative mb-6 form-input">
                   <input
                     type="email"
                     name="email"
                     required
                     autoComplete="off"
-                    className="w-full max-w-lg border bg-[#F8F9FA] outline-none focus:ring-gray-600 focus:ring-2 px-4 py-2 font-medium peer text-[#3d3d3d] rounded-sm"
+                    className="w-full max-w-lg border bg-[#F0F4F3] outline-two px-4 py-2 font-medium peer rounded-sm"
                     onChange={handleChangeInput}
                   />
                   <label
                     className={`${
-                      inputs.email ? "left-0 top-0 " : "left-4 top-8 "
-                    }absolute font-medium transition-all peer-focus:left-0 peer-focus:top-0 z-10 ease-in text-[#3d3d3d]`}>
+                      inputs.email ? "left-0 -top-5 " : "left-4 top-2 "
+                    }absolute font-medium transition-all peer-focus:left-0 peer-focus:-top-5 z-10 ease-in`}
+                  >
                     Email
                   </label>
                 </div>
-                <div className="relative pt-6 mb-9 form-input">
+                <div className="relative mb-9 form-input">
                   <textarea
                     name="pesan"
-                    className="w-full border bg-[#f8f9fa] peer text-[#3d3d3d] px-4 py-2 focus:ring-gray-500 focus:ring-2 outline-none rounded-sm"
+                    className="w-full border bg-[#F0F4F3] peer px-4 py-2 outline-two rounded-sm"
                     rows={6}
-                    onChange={handleChangeInput}></textarea>
+                    onChange={handleChangeInput}
+                  ></textarea>
                   <label
                     className={`${
-                      inputs.pesan ? "left-0 top-0 " : "left-4 top-8 "
-                    }absolute font-medium transition-all peer-focus:left-0 peer-focus:top-0 z-10 ease-in text-[#3d3d3d]`}>
+                      inputs.pesan ? "left-0 -top-5 " : "left-4 top-2 "
+                    }absolute font-medium transition-all peer-focus:left-0 peer-focus:-top-5 z-10 ease-in`}
+                  >
                     Pesan
                   </label>
                 </div>
                 <div className="form-input">
                   <button
-                    className="flex items-center justify-center w-full max-w-xs p-3 text-white bg-black rounded-sm gap-x-3"
-                    type="submit">
+                    className="flex items-center justify-center w-full max-w-xs p-3 text-three   bg-two rounded-sm gap-x-3"
+                    type="submit"
+                  >
                     <p>Send</p> <AiOutlineSend />
                   </button>
                 </div>

@@ -5,11 +5,11 @@ import imageAboutUs from "../../assets/img/image-aboutus.jpeg";
 const index = () => {
   return (
     <>
-      <section className="bg-[#DEDEDE] relative">
+      <section className="bg-three relative">
         <div className="container">
-          <div className="w-[300px] h-[95%] absolute left-[20%] top-0 bg-[#D0D0D0] border-b-[.5rem] border-[#2a28f0] lg:block hidden"></div>
-          <article className="row lg:min-h-[600px] px-4 lg:px-8 pt-36 pb-16 relative z-10 text-[#3d3d3d] after:content-[''] after:clear-both after:block">
-            <div className="absolute top-[10rem] left-[37rem] w-20 h-12 bg-[rgb(42,40,240,.3)] hidden lg:block"></div>
+          <div className="w-[300px] h-[95%] absolute left-[20%] top-0 bg-[#FFFFE5] border-b-[.5rem] border-two lg:block hidden"></div>
+          <article className="row lg:min-h-[600px] px-4 lg:px-8 pt-36 pb-16 relative z-10 after:content-[''] after:clear-both after:block">
+            <div className="absolute top-[10rem] left-[37rem] w-20 h-12 bg-[rgba(68,94,54,.4)] hidden lg:block"></div>
             <div className="absolute top-[30rem] right-[10%] lg:top-[57%] lg:left-[22rem] block">
               <TbNeedleThread size="1.5rem" />
             </div>
@@ -17,13 +17,13 @@ const index = () => {
               <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80 "
-                  stroke="#2a28f0"
+                  stroke="#445E36"
                   fill="transparent"
                 />
               </svg>
             </div>
             <div className="px-8 mb-12 lg:px-0 lg:float-left lg:mr-12">
-              <div className="w-72 border-[.5rem] mx-auto relative after:content-[''] after:block after:w-2 after:h-9 after:absolute after:-right-4 after:bottom-4 after:bg-[#2a28f0]">
+              <div className="w-72 border-[.5rem] mx-auto relative after:content-[''] after:block after:w-2 after:h-9 after:absolute after:-right-4 after:bottom-4 after:bg-two">
                 <img
                   src={imageAboutUs}
                   alt=""

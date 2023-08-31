@@ -12,8 +12,9 @@ export default {
       },
       colors: {
         one: "#483C32",
-        two: "#B3CBA6",
+        two: "#445E36",
         three: "#FFFFF0",
+        four: "#B3CBA6",
       },
     },
     fontFamily: {
