@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import icon_google from "../../assets/img/icons/icons8-google.svg";
 import login1 from "../../assets/img/login1.png";
@@ -13,14 +12,15 @@ const index = () => {
     email: "",
     password: "",
   });
-  const [nodeValidation, setNodeValidation] = useState<
-    React.ReactNode | undefined
-  >();
+  const [validate, setValidate] = useState<InputsLogin>({
+    email: "",
+    password: "",
+  });
 
   const handleSubmitFormLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (handleValidationLogin()) return;
+    handleValidationLogin();
 
     // const data = await axios
     //   .post(backendURL + "/api/auth/login", inputsLogin)
@@ -29,46 +29,28 @@ const index = () => {
   };
 
   const handleValidationLogin = () => {
-    setNodeValidation(undefined);
+    var email: string = "";
+    var password: string = "";
 
-    const listValidation = [];
-    var result = false;
-    if (!inputsLogin.email) {
-      listValidation.unshift("Email tidak boleh kosong.");
-      result = true;
-    }
-
+    // email
     var rs = inputsLogin.email;
     var atps = rs.indexOf("@");
     var dots = rs.lastIndexOf(".");
-    if (atps < 1 || dots < atps + 2 || dots + 2 >= rs.length) {
-      listValidation.unshift("Alamat email tidak valid.");
-      result = true;
+    if (!inputsLogin.email) {
+      email = "Email tidak boleh kosong";
+    } else if (atps < 1 || dots < atps + 2 || dots + 2 >= rs.length) {
+      email = "Alamat email tidak valid";
     }
 
+    // password
     if (!inputsLogin.password) {
-      listValidation.unshift("Password tidak boleh kosong.");
-      result = true;
+      password = "Password tidak boleh kosong.";
     }
 
-    if (listValidation.length > 0) {
-      setNodeValidation(
-        <div>
-          <h5 className="text-red-500 text-center">
-            Terdapat kesalahan yang terjadi
-          </h5>
-          <ul className="[list-style:inherit]">
-            {listValidation.map((x, i) => (
-              <li key={i} className="text-center">
-                {x}
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    }
-
-    return result;
+    setValidate({
+      email,
+      password,
+    });
   };
 
   const handleChangeInputLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,12 +61,6 @@ const index = () => {
     <>
       <section className="pt-24 md:pb-4 bg-three">
         <div className="container max-w-full">
-          {/* {(nodeValidation ? nodeValidation : '')}
-			<form onSubmit={handleSubmitFormLogin} className="flex flex-col gap-3 w-full md:w-1/2 mx-auto mt-4">
-				
-				<input type="text" name="password" className="border" onChange={handleChangeInputLogin} />
-				<button className="border bg-black text-white p-3">Login</button>
-			</form> */}
           <div className="min-h-[500px] flex flex-wrap">
             <article className="w-full md:w-[calc(100%-400px)]  order-2 md:order-1">
               <div className="flex items-center w-full h-full">
@@ -108,24 +84,44 @@ const index = () => {
                     Silakan masuk ke akun Anda menggunakan informasi yang sudah
                     terdaftar.
                   </p>
-                  <form onSubmit={handleSubmitFormLogin}>
-                    <div className="form-input mb-2">
+                  <form onSubmit={handleSubmitFormLogin} method="post">
+                    <div className="form-input mb-2 relative">
                       <input
                         type="text"
                         name="email"
-                        placeholder="Email address"
-                        className="px-4 py-2 bg-[#F0F4F3] w-full border border-[#EEEEEE] outline-two rounded-md placeholder:text-one placeholder:font-medium"
+                        id="email"
+                        className={`${
+                          validate.email ? "border-fail" : "border-two"
+                        } px-4 py-2 bg-three w-full border-2 rounded-md font-semibold outline-none`}
                         onChange={handleChangeInputLogin}
                       />
+                      <label
+                        htmlFor="email"
+                        className={`${
+                          validate.email ? "text-fail" : "text-two"
+                        } absolute -top-2 left-3 bg-three px-2 text-[13px] font-bold`}
+                      >
+                        {validate.email ? validate.email : "Email"}
+                      </label>
                     </div>
-                    <div className="form-input mb-2">
+                    <div className="form-input mb-2 relative">
                       <input
                         type="password"
                         name="password"
-                        placeholder="Password"
-                        className="px-4 py-2 bg-[#F0F4F3] w-full border border-[#EEEEEE] outline-two rounded-md placeholder:text-one placeholder:font-medium"
+                        id="password"
+                        className={`${
+                          validate.password ? "border-fail" : "border-two"
+                        } px-4 py-2 bg-three w-full border-2 rounded-md font-semibold outline-none`}
                         onChange={handleChangeInputLogin}
                       />
+                      <label
+                        htmlFor="password"
+                        className={`${
+                          validate.password ? "text-fail" : "text-two"
+                        } absolute -top-2 left-3 bg-three px-2 text-[13px] font-bold`}
+                      >
+                        {validate.password ? validate.password : "Password"}
+                      </label>
                     </div>
                     <div className="form-input flex gap-2 mb-2">
                       <input
