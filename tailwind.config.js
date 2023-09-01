@@ -15,6 +15,8 @@ export default {
         two: "#445E36",
         three: "#FFFFF0",
         four: "#B3CBA6",
+        fail: "#F7576B",
+        success: "#97D359",
       },
     },
     fontFamily: {
