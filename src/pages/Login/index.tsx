@@ -1,5 +1,4 @@
 import { useState } from "react";
-import icon_google from "../../assets/img/icons/icons8-google.svg";
 import login1 from "../../assets/img/login1.png";
 
 interface InputsLogin {
@@ -20,7 +19,7 @@ const index = () => {
   const handleSubmitFormLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    handleValidationLogin();
+    if (handleValidationLogin()) return;
 
     // const data = await axios
     //   .post(backendURL + "/api/auth/login", inputsLogin)
@@ -28,7 +27,8 @@ const index = () => {
     // if (data.status !== "success") console.error(data.message);
   };
 
-  const handleValidationLogin = () => {
+  const handleValidationLogin = (): boolean => {
+    var result = false;
     var email: string = "";
     var password: string = "";
 
@@ -38,19 +38,24 @@ const index = () => {
     var dots = rs.lastIndexOf(".");
     if (!inputsLogin.email) {
       email = "Email tidak boleh kosong";
+      result = true;
     } else if (atps < 1 || dots < atps + 2 || dots + 2 >= rs.length) {
       email = "Alamat email tidak valid";
+      result = true;
     }
 
     // password
     if (!inputsLogin.password) {
       password = "Password tidak boleh kosong.";
+      result = true;
     }
 
     setValidate({
       email,
       password,
     });
+
+    return result;
   };
 
   const handleChangeInputLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,12 +143,6 @@ const index = () => {
                         className="w-full px-4 py-2 bg-two text-three rounded-md font-medium"
                       >
                         Login
-                      </button>
-                    </div>
-                    <div className="form-input">
-                      <button className="border border-[#EEEEEE] w-full px-4 py-1 rounded-md font-medium flex items-center justify-center">
-                        <img src={icon_google} alt="icon google" />
-                        <span className="ml-2">Sign in with Google</span>
                       </button>
                     </div>
                   </form>

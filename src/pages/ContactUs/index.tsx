@@ -22,7 +22,7 @@ const Index = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    handleValidationContact();
+    if (handleValidationContact()) return;
   };
 
   const handleChangeInput = (
@@ -31,7 +31,8 @@ const Index = () => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleValidationContact = () => {
+  const handleValidationContact = (): boolean => {
+    var result = false;
     var full_name: string = "";
     var email: string = "";
     var message: string = "";
@@ -39,6 +40,7 @@ const Index = () => {
     // full_name
     if (!inputs.full_name) {
       full_name = "Nama Lengkap tidak boleh kosong.";
+      result = true;
     }
 
     // email
@@ -47,13 +49,16 @@ const Index = () => {
     var dots = rs.lastIndexOf(".");
     if (!inputs.email) {
       email = "Email tidak boleh kosong";
+      result = true;
     } else if (atps < 1 || dots < atps + 2 || dots + 2 >= rs.length) {
       email = "Alamat email tidak valid";
+      result = true;
     }
 
     // message
     if (!inputs.message) {
       message = "Pesan tidak boleh kosong.";
+      result = true;
     }
 
     setValidate({
@@ -61,6 +66,8 @@ const Index = () => {
       email,
       message,
     });
+
+    return result;
   };
 
   return (
