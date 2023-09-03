@@ -7,6 +7,8 @@ import Service from "./pages/Service";
 import ContactUs from "./pages/ContactUs";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
+import MainDashboard from "./components/DashboardLayouts/MainDashboard";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,16 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <>Halaman tidak ada</>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <MainDashboard />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
       },
     ],
   },
