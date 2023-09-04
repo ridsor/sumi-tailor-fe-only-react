@@ -1,22 +1,25 @@
 import { Outlet } from "react-router-dom";
 import Auth from "../Auth";
 import AsideDashboard from "./AsideDashboard";
-import { FaPlay } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
 export default () => {
+  const [sidebar, setSideBar] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (window.innerWidth >= 768) setSideBar(true);
+  }, []);
+
   return (
     <Auth>
-      <main className="relative left-[250px] w-[calc(100%-250px)] bg-three min-h-screen h-fit pl-4">
-        <div className="absolute -left-7 top-[110px] bg-three z-10 rounded-full p-1 flex items-center justify-center">
-          <button className="rounded-full bg-two text-three active:ring active:ring-[rgba(0,0,0,.1)]">
-            <div className="p-3">
-              <FaPlay className="text-lg -rotate-180" />
-            </div>
-          </button>
-        </div>
+      <main
+        className={`${
+          sidebar ? "md:left-[250px] md:w-[calc(100%-250px)]" : ""
+        } left-[60px] w-[calc(100%-60px)] relative bg-three min-h-screen h-fit`}
+      >
         <Outlet />
       </main>
-      <AsideDashboard />
+      <AsideDashboard sidebar={sidebar} setSideBar={setSideBar} />
     </Auth>
   );
 };

@@ -84,7 +84,7 @@ const index = () => {
             <article className="w-full md:w-[400px] order-1 md:order-2">
               <div className="flex justify-center items-center p-8 h-full">
                 <div className="w-full">
-                  <h2 className="font-one font-bold text-3xl mb-1">Login</h2>
+                  <h2 className="font-one font-bold text-3xl mb-1">Sign In</h2>
                   <p className="mb-6">
                     Silakan masuk ke akun Anda menggunakan informasi yang sudah
                     terdaftar.
@@ -142,7 +142,7 @@ const index = () => {
                         type="submit"
                         className="w-full px-4 py-2 bg-two text-three rounded-md font-medium"
                       >
-                        Login
+                        Sign In
                       </button>
                     </div>
                   </form>
