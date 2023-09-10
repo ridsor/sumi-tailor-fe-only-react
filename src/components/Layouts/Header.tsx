@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { FaBars, FaCircle, FaUser } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
   const [hamburger, setHamburger] = useState<boolean>(false);
 
   return (
@@ -16,7 +18,7 @@ const Header = () => {
           <div className="order-3 center lg:order-2">
             <button
               className="block p-2 mx-2 lg:hidden"
-              onClick={() => setHamburger((prev) => (prev ? false : true))}
+              onClick={() => setHamburger((prev) => !prev)}
             >
               <FaBars
                 className={`${
@@ -28,25 +30,68 @@ const Header = () => {
             <nav
               className={`${
                 hamburger
-                  ? " opacity-100 pointer-events-auto right-0"
+                  ? " opacity-100 pointer-events-auto -right-0"
                   : "-right-1/3 pointer-events-none opacity-0 lg:pointer-events-auto lg:opacity-100"
               } transition-all top-[110%] lg:block lg:static absolute bg-white lg:bg-inherit shadow-md lg:shadow-none p-4 lg:p-0 w-full max-w-[250px] lg:w-auto lg:max-w-none lg:rounded-none rounded-md lg:border-none border`}
             >
               <ul className="flex gap-x-10 text-[#0f0f0f] lg:text-white flex-col lg:flex-row gap-y-3">
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link
+                    to="/"
+                    className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
+                      location.pathname === "/" ? "after:w-full" : "after:w-0"
+                    }`}
+                  >
+                    Home
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/about-us">About Us</Link>
+                  <Link
+                    to="/about-us"
+                    className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
+                      location.pathname === "/about-us"
+                        ? "after:w-full"
+                        : "after:w-0"
+                    }`}
+                  >
+                    About Us
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/gallery">Gallery</Link>
+                  <Link
+                    to="/gallery"
+                    className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
+                      location.pathname === "/gallery"
+                        ? "after:w-full"
+                        : "after:w-0"
+                    }`}
+                  >
+                    Gallery
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/service">Service</Link>
+                  <Link
+                    to="/service"
+                    className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
+                      location.pathname === "/service"
+                        ? "after:w-full"
+                        : "after:w-0"
+                    }`}
+                  >
+                    Service
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/contact-us">Contact Us</Link>
+                  <Link
+                    to="/contact-us"
+                    className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
+                      location.pathname === "/contact-us"
+                        ? "after:w-full"
+                        : "after:w-0"
+                    }`}
+                  >
+                    Contact Us
+                  </Link>
                 </li>
               </ul>
             </nav>
