@@ -15,7 +15,11 @@ interface Props {
 
 export default ({ sidebar, setSideBar }: Props) => {
   return (
-    <aside className="fixed top-0 bottom-0 left-0 right-0 md:right-auto">
+    <aside
+      className={`${
+        sidebar ? "right-0" : ""
+      } fixed top-0 bottom-0 left-0 md:right-auto`}
+    >
       <div className="relative w-full h-full">
         {sidebar ? (
           <div
