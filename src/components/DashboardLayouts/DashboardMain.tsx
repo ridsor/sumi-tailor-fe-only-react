@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Auth from "../Auth";
-import AsideDashboard from "./AsideDashboard";
+import AsideDashboard from "./DashboardAside";
 import { useEffect, useState } from "react";
 
 export default () => {

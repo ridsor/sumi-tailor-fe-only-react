@@ -7,7 +7,7 @@ import Service from "./pages/Service";
 import ContactUs from "./pages/ContactUs";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
-import MainDashboard from "./components/DashboardLayouts/MainDashboard";
+import MainDashboard from "./components/DashboardLayouts/DashboardMain";
 import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
