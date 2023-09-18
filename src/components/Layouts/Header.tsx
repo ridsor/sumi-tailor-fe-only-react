@@ -47,7 +47,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="/about-us"
+                    to="/about"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
                       location.pathname === "/about"
                         ? "after:w-full"
@@ -83,7 +83,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="/contact-us"
+                    to="/contact"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
                       location.pathname === "/contact"
                         ? "after:w-full"
