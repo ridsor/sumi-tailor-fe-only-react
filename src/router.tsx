@@ -7,8 +7,25 @@ import Service from "./pages/Service";
 import ContactUs from "./pages/ContactUs";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
-import MainDashboard from "./components/DashboardLayouts/DashboardMain";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+
+export const routes = {
+  main: [
+    '',
+    '*',
+    'about',
+    'gallery',
+    'service',
+    'contact',
+    'orders',
+    'login',
+  ],
+  auth: [
+    'dashboard',
+    'profile'
+  ]
+}
 
 const router = createBrowserRouter([
   {
@@ -20,45 +37,40 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "about",
+        path: routes.main[2],
         element: <AboutUs />,
       },
       {
-        path: "gallery",
+        path: routes.main[3],
         element: <Gallery />,
       },
       {
-        path: "service",
+        path: routes.main[4],
         element: <Service />,
       },
       {
-        path: "contact",
+        path: routes.main[5],
         element: <ContactUs />,
       },
       {
-        path: "orders",
+        path: routes.main[6],
         element: <Orders />,
       },
       {
-        path: "login",
+        path: routes.main[7],
         element: <Login />,
       },
       {
         path: "*",
         element: <>Halaman tidak ada</>,
       },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: <MainDashboard />,
-    children: [
       {
-        index: true,
+        path: routes.auth[0],
         element: <Dashboard />,
       },
       {
-        path: 'profile'
+        path: routes.auth[1],
+        element: <Profile/>
       }
     ],
   },

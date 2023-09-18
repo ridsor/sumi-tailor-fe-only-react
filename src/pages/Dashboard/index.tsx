@@ -94,7 +94,7 @@ export default () => {
             <div className="flex flex-wrap gap-y-2 lg:gap-y-0 mb-3">
               <div className="w-full lg:w-4/12">
                 <div className="flex items-center h-full">
-                  <h1 className="font-semibold font-one text-3xl tracking-wide mb-3">
+                  <h1 className="font-semibold font-one text-3xl tracking-wide mb-3 lg:mb-0">
                     Dashboard
                   </h1>
                 </div>

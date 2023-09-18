@@ -95,12 +95,12 @@ export default ({ sidebar, setSideBar }: Props) => {
                 ) : (
                   ""
                 )}
-                <Link to='/user/profile' className="flex items-center hover:bg-four rounded-md w-full font-semibold active:ring active:ring-three mt-2">
-                <div className="p-3">
-                  <FaUser className="text-xl" />
-                </div>
-                {sidebar ? "Profile" : ""}
-              </Link>
+                <Link to='/profile' className="flex items-center hover:bg-four rounded-md w-full font-semibold active:ring active:ring-three mt-2">
+                  <div className="p-3">
+                    <FaUser className="text-xl" />
+                  </div>
+                  {sidebar ? "Profile" : ""}
+                </Link>
               </div>
               <hr className="border-top border-[#d7d3cc]" />
               <ul
