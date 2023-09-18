@@ -49,7 +49,7 @@ const Header = () => {
                   <Link
                     to="/about-us"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
-                      location.pathname === "/about-us"
+                      location.pathname === "/about"
                         ? "after:w-full"
                         : "after:w-0"
                     }`}
@@ -85,7 +85,7 @@ const Header = () => {
                   <Link
                     to="/contact-us"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
-                      location.pathname === "/contact-us"
+                      location.pathname === "/contact"
                         ? "after:w-full"
                         : "after:w-0"
                     }`}
