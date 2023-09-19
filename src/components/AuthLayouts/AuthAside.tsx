@@ -6,6 +6,7 @@ import { TbLayoutDashboard } from "react-icons/tb";
 import { FaShoppingCart } from "react-icons/fa";
 import { RiShieldUserFill } from "react-icons/ri";
 import { FaPlay } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6";
 import React from "react";
 
 interface Props {
@@ -72,7 +73,7 @@ export default ({ sidebar, setSideBar }: Props) => {
               <div
                 className={`${
                   sidebar ? "px-2" : ""
-                } user-profile relative mb-3`}
+                } user-profile mb-2`}
               >
                 <div
                   className={`${
@@ -90,15 +91,16 @@ export default ({ sidebar, setSideBar }: Props) => {
                     <div className="user-name text-center font-semibold">
                       Admin
                     </div>
-                    <button type="button" className="absolute top-0 right-0">
-                      <div className="p-2 bg-two hover:bg-four text-white rounded-full active:ring active:ring-three">
-                        <FaPencil />
-                      </div>
-                    </button>
                   </>
                 ) : (
                   ""
                 )}
+                <Link to='/profile' className="flex items-center hover:bg-four rounded-md w-full font-semibold active:ring active:ring-three mt-2">
+                  <div className="p-3">
+                    <FaUser className="text-xl" />
+                  </div>
+                  {sidebar ? "Profile" : ""}
+                </Link>
               </div>
               <hr className="border-top border-[#d7d3cc]" />
               <ul
