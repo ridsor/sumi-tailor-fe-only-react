@@ -4,10 +4,11 @@ import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import { routes } from "../../router";
 import AuthMain from "./AuthLayouts/AuthMain";
+import Loading from "../Loading";
 
 const Main = () => {
   const location = useLocation();
-  const [layouts, setLayouts] = useState<string>("main");
+  const [layouts, setLayouts] = useState<string>("default");
 
   useEffect(() => {
     if (layouts === "main") {
@@ -47,7 +48,7 @@ const Main = () => {
     case "auth":
       return <AuthMain />;
     default:
-      return <>404</>;
+      return <Loading />;
   }
 };
 
