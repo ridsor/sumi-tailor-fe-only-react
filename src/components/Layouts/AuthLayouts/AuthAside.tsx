@@ -1,6 +1,3 @@
-import { FaArrowRightFromBracket, FaInbox, FaPencil } from "react-icons/fa6";
-import logo from "../../../vite.svg";
-import user_img from "../../assets/img/user-img.svg";
 import { Link } from "react-router-dom";
 import { TbLayoutDashboard } from "react-icons/tb";
 import { FaShoppingCart } from "react-icons/fa";
@@ -8,6 +5,9 @@ import { RiShieldUserFill } from "react-icons/ri";
 import { FaPlay } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import React from "react";
+import { FaArrowRightFromBracket, FaInbox } from "react-icons/fa6";
+import user_img from "../../../assets/img/user-img.svg";
+const logo = "vite.svg";
 
 interface Props {
   sidebar: boolean;
@@ -70,11 +70,7 @@ export default ({ sidebar, setSideBar }: Props) => {
                 )}
               </div>
               <hr className="border-top border-[#d7d3cc] mb-3" />
-              <div
-                className={`${
-                  sidebar ? "px-2" : ""
-                } user-profile mb-2`}
-              >
+              <div className={`${sidebar ? "px-2" : ""} user-profile mb-2`}>
                 <div
                   className={`${
                     sidebar ? "w-[70px]" : "w-[44px]"
@@ -95,7 +91,10 @@ export default ({ sidebar, setSideBar }: Props) => {
                 ) : (
                   ""
                 )}
-                <Link to='/profile' className="flex items-center hover:bg-four rounded-md w-full font-semibold active:ring active:ring-three mt-2">
+                <Link
+                  to="/profile"
+                  className="flex items-center hover:bg-four rounded-md w-full font-semibold active:ring active:ring-three mt-2"
+                >
                   <div className="p-3">
                     <FaUser className="text-xl" />
                   </div>
