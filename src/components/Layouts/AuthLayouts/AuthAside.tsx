@@ -98,7 +98,7 @@ export default ({ sidebar, setSideBar }: Props) => {
                   <div className="p-3">
                     <FaUser className="text-xl" />
                   </div>
-                  {sidebar ? "Profile" : ""}
+                  {sidebar ? "Profil" : ""}
                 </Link>
               </div>
               <hr className="border-top border-[#d7d3cc]" />
