@@ -39,7 +39,9 @@ const Header = () => {
                   <Link
                     to="/"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
-                      location.pathname === "/" ? "after:w-full" : "after:w-0"
+                      location.pathname === "/"
+                        ? "after:w-5"
+                        : "after:w-0 hover:after:w-5 lg:text-[#cdcdcd] hover:lg:text-white"
                     }`}
                   >
                     Home
@@ -50,8 +52,8 @@ const Header = () => {
                     to="/about"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
                       location.pathname === "/about"
-                        ? "after:w-full"
-                        : "after:w-0"
+                        ? "after:w-5"
+                        : "after:w-0 hover:after:w-5 lg:text-[#cdcdcd] hover:lg:text-white"
                     }`}
                   >
                     About Us
@@ -62,8 +64,8 @@ const Header = () => {
                     to="/gallery"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
                       location.pathname === "/gallery"
-                        ? "after:w-full"
-                        : "after:w-0"
+                        ? "after:w-5"
+                        : "after:w-0 hover:after:w-5 lg:text-[#cdcdcd] hover:lg:text-white"
                     }`}
                   >
                     Gallery
@@ -74,8 +76,8 @@ const Header = () => {
                     to="/service"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
                       location.pathname === "/service"
-                        ? "after:w-full"
-                        : "after:w-0"
+                        ? "after:w-5"
+                        : "after:w-0 hover:after:w-5 lg:text-[#cdcdcd] hover:lg:text-white"
                     }`}
                   >
                     Service
@@ -86,8 +88,8 @@ const Header = () => {
                     to="/contact"
                     className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
                       location.pathname === "/contact"
-                        ? "after:w-full"
-                        : "after:w-0"
+                        ? "after:w-5"
+                        : "after:w-0 hover:after:w-5 lg:text-[#cdcdcd] hover:lg:text-white"
                     }`}
                   >
                     Contact Us
