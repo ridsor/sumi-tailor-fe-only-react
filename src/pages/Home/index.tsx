@@ -31,7 +31,7 @@ const index = () => {
 
   useEffect(() => {
     getFormatChatWa();
-  }, []);
+  }, [getFormatChatWa]);
 
   return (
     <>

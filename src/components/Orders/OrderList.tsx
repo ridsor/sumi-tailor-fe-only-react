@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import Order from "./Order";
+import Order from "./OrderItem";
 import Pagination from "../Pagination";
 import {
   getOrdersFinished,
@@ -55,30 +55,39 @@ export default () => {
     (state) => state.orderUnfinished.currentPage
   );
 
-  var sliderSettings = {
-    dots: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    infinite: false,
-  };
+  var sliderSettings = useMemo(
+    () => ({
+      dots: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      infinite: false,
+    }),
+    []
+  );
 
-  const handleChangeCurrentPageOrderFinished = (page: number) =>
-    dispatch(
-      getOrdersFinished({
-        currentPage: page,
-        totalItems: totalItemsdOrderFinished,
-      })
-    );
+  const handleChangeCurrentPageOrderFinished = useCallback(
+    (page: number) =>
+      dispatch(
+        getOrdersFinished({
+          currentPage: page,
+          totalItems: totalItemsdOrderFinished,
+        })
+      ),
+    []
+  );
 
-  const handleChangeCurrentPageOrderUnfinished = (page: number) =>
-    dispatch(
-      getOrdersUnfinished({
-        currentPage: page,
-        totalItems: totalItemsdOrderUnfinished,
-      })
-    );
+  const handleChangeCurrentPageOrderUnfinished = useCallback(
+    (page: number) =>
+      dispatch(
+        getOrdersUnfinished({
+          currentPage: page,
+          totalItems: totalItemsdOrderUnfinished,
+        })
+      ),
+    []
+  );
 
   useEffect(() => {
     dispatch(
@@ -91,7 +100,7 @@ export default () => {
         currentPage: currentPageOrderUnfinished,
       })
     );
-  }, [dispatch]);
+  }, [dispatch, getOrdersFinished, getOrdersUnfinished]);
 
   useEffect(() => {
     // Slick
