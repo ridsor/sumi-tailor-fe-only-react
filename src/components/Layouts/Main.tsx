@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import { routes } from "../../App";
-import AuthMain from "../AuthLayouts/AuthMain";
+import AuthMain from "./AuthLayouts/AuthMain";
 import Loading from "../Loading";
 
 const Main = () => {
