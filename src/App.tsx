@@ -12,8 +12,8 @@ import Service from "./pages/Service";
 import ContactUs from "./pages/ContactUs";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Profile from "./pages/Profile";
+import Dashboard from "./pages/Auth/Dashboard";
+import Profile from "./pages/Auth/Profile";
 
 export const routes = {
   main: ["", "*", "about", "gallery", "service", "contact", "orders", "login"],
