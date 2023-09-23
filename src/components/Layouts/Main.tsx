@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
-import { routes } from "../../router";
+import { routes } from "../../App";
 import AuthMain from "./AuthLayouts/AuthMain";
 import Loading from "../Loading";
 
