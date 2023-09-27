@@ -14,10 +14,11 @@ import Orders from "./pages/Orders";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Auth/Dashboard";
 import Profile from "./pages/Auth/Profile";
+import Admin from "./pages/Auth/Admin";
 
 export const routes = {
   main: ["", "*", "about", "gallery", "service", "contact", "orders", "login"],
-  auth: ["dashboard", "profile"],
+  auth: ["dashboard", "profile", "admin"],
 };
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Route path={routes.main[7]} element={<Login />} />
         <Route path={routes.auth[0]} element={<Dashboard />} />
         <Route path={routes.auth[1]} element={<Profile />} />
+        <Route path={routes.auth[2]} element={<Admin />} />
       </Route>
     )
   );

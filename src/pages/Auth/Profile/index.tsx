@@ -6,7 +6,9 @@ const index = () => {
       <section>
         <div className="container max-w-full">
           <div className="p-4">
-            <h1 className="text-3xl font-one tracking-wide mb-3">Profil</h1>
+            <h1 className="text-3xl font-one tracking-wide mb-3 font-semibold">
+              Profil
+            </h1>
             <form method="post">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-24 rounded-full aspect-square overflow-hidden">
