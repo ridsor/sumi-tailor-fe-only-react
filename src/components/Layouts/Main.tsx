@@ -11,12 +11,6 @@ const Main = () => {
   const [layouts, setLayouts] = useState<string>("default");
 
   useEffect(() => {
-    if (layouts === "main") {
-      document.body.classList.add("overflow-x-hidden");
-    }
-  }, []);
-
-  useEffect(() => {
     for (const route of routes.main) {
       if ("/" + route === location.pathname) {
         if (layouts === "main") break;
@@ -31,6 +25,12 @@ const Main = () => {
         setLayouts("auth");
         break;
       }
+    }
+
+    if (layouts === "main" || layouts === "default") {
+      document.body.classList.add("overflow-x-hidden");
+    } else {
+      document.body.classList.remove("overflow-x-hidden");
     }
   }, [location]);
 

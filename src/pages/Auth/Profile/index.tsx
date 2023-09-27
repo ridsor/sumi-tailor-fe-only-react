@@ -1,6 +1,11 @@
+import { useState } from "react";
 import user_img from "../../../assets/img/user-img.svg";
+import FormProfilDetail from "../../../components/Profil/FormProfilDetail";
+import FormProfilPassword from "../../../components/Profil/FormProfilPassword";
 
 const index = () => {
+  const [isChangePassword, setIsChangePassword] = useState<boolean>(false);
+
   return (
     <>
       <section>
@@ -19,56 +24,14 @@ const index = () => {
                   Hapus
                 </button>
               </div>
-              <div className="form-input mb-4">
-                <label htmlFor="nama" className="font-bold block">
-                  Nama
-                </label>
-                <input
-                  type="text"
-                  id="nama"
-                  name="nama"
-                  className="p-2 border-2 w-full max-w-md rounded-md"
-                />
-              </div>
-              <div className="form-input mb-4">
-                <label htmlFor="email" className="font-bold block">
-                  Email
-                </label>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  className="p-2 border-2 w-full max-w-md rounded-md"
-                />
-              </div>
-              <div className="form-input mb-4">
-                <label htmlFor="password_lama" className="font-bold block">
-                  Password Lama
-                </label>
-                <input
-                  type="password"
-                  id="password_lama"
-                  name="password_lama"
-                  className="p-2 border-2 w-full max-w-md rounded-md"
-                />
-              </div>
-              <div className="form-input mb-4">
-                <label htmlFor="password_baru" className="font-bold block">
-                  Password Baru
-                </label>
-                <input
-                  type="password"
-                  id="password_baru"
-                  name="password_baru"
-                  className="p-2 border-2 w-full max-w-md rounded-md"
-                />
-              </div>
-              <div className="form-input mb-4">
-                <button className="px-3 py-2 bg-two text-white rounded-md font-semibold hover:bg-four focus:ring focus:ring-[rgba(179,203,166,.5)]">
-                  Simpan
-                </button>
-              </div>
             </form>
+            <button
+              onClick={() => setIsChangePassword((prev) => !prev)}
+              className="px-3 mb-4 py-2 bg-gray-200 text-one rounded-md font-semibold hover:bg-gray-300 focus:ring focus:ring-[rgba(209,213,219,.5)]"
+            >
+              {isChangePassword ? "Ubah Detail" : "Ubah Password"}
+            </button>
+            {isChangePassword ? <FormProfilPassword /> : <FormProfilDetail />}
           </div>
         </div>
       </section>

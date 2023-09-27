@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import Order from "./OrderItem";
-import Pagination from "../Pagination";
+import Pagination from "../Pagination/Pagination";
 import {
   getOrdersFinished,
   orderFinishedSelectors,
