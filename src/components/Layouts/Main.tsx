@@ -12,7 +12,7 @@ const Main = () => {
 
   useEffect(() => {
     for (const route of routes.main) {
-      if ("/" + route === location.pathname) {
+      if ("/" + route === location.pathname || route === "*") {
         if (layouts === "main") break;
         setLayouts("main");
         break;

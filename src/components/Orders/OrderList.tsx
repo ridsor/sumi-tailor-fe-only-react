@@ -106,9 +106,9 @@ export default () => {
     // Slick
     const dots = document.querySelectorAll(".slick-dots>li>button");
     dots[0].innerHTML = "Diproses";
-    dots[0].setAttribute("tabindex", "1");
+    dots[0].setAttribute("tabindex", "2");
     dots[1].innerHTML = "Selesai";
-    dots[1].setAttribute("tabindex", "2");
+    dots[1].setAttribute("tabindex", "3");
   });
 
   return (
