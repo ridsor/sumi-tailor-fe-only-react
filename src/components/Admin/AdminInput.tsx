@@ -11,11 +11,11 @@ export default ({ active, close }: Props) => {
     <Modal active={active} close={close}>
       <div className="container max-w-full">
         <div className="title-modal font-semibold text-xl px-3 py-2 border-b relative">
-          Buat Pesanan
+          Tambah Admin
           <button
             className="absolute top-1/2 -translate-y-1/2 right-3"
             tabIndex={active ? 1 : undefined}
-            onClick={() => close()}
+            onClick={close}
           >
             <FaXmark />
           </button>
@@ -32,30 +32,30 @@ export default ({ active, close }: Props) => {
           <div className="form-input mb-3">
             <input
               type="text"
-              placeholder="Kategori"
-              name="category"
+              placeholder="Email"
+              name="email"
               className="w-full border rounded-sm py-2 px-3"
             />
           </div>
           <div className="form-input mb-3">
             <input
-              type="text"
-              placeholder="Harga"
-              name="price"
+              type="password"
+              placeholder="Password"
+              name="password"
               className="w-full border rounded-sm py-2 px-3"
             />
           </div>
           <div className="form-input mb-3">
-            <textarea
-              name="description"
-              placeholder="Deskripsi"
-              rows={3}
+            <input
+              type="password"
+              placeholder="Konfirmasi Password"
+              name="confirm_password"
               className="w-full border rounded-sm py-2 px-3"
-            ></textarea>
+            />
           </div>
           <div className="form-input">
             <button className="w-full bg-two px-3 py-2 text-white rounded-sm font-semibold">
-              Buat
+              Tambah
             </button>
           </div>
         </form>
