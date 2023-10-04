@@ -1,11 +1,15 @@
 import AsideDashboard from "./AuthAside";
 import Loading from "../../Loading";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 export default () => {
   const [sidebar, setSideBar] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const openCloseSideBar = useCallback((value: boolean) => {
+    setSideBar(value);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,7 +32,10 @@ export default () => {
           >
             <Outlet />
           </main>
-          <AsideDashboard sidebar={sidebar} setSideBar={setSideBar} />
+          <AsideDashboard
+            sidebar={sidebar}
+            openCloseSideBar={openCloseSideBar}
+          />
         </>
       )}
     </>

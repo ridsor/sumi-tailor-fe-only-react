@@ -83,18 +83,6 @@ const Header = () => {
                     Service
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/contact"
-                    className={`after:transition-all after:content-[''] after:block after:h-1 relative after:absolute after:-bottom-1.5 after:bg-four after:rounded-full after:right-1/2 after:translate-x-1/2 ${
-                      location.pathname === "/contact"
-                        ? "after:w-5"
-                        : "after:w-0 hover:after:w-5 lg:text-[#cdcdcd] hover:lg:text-white"
-                    }`}
-                  >
-                    Contact Us
-                  </Link>
-                </li>
               </ul>
             </nav>
           </div>
