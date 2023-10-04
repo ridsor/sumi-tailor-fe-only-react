@@ -4,17 +4,16 @@ import { FaShoppingCart } from "react-icons/fa";
 import { RiShieldUserFill } from "react-icons/ri";
 import { FaPlay } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
-import React from "react";
-import { FaArrowRightFromBracket, FaInbox } from "react-icons/fa6";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
 import user_img from "../../../assets/img/user-img.svg";
 const logo = "vite.svg";
 
 interface Props {
   sidebar: boolean;
-  setSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  openCloseSideBar: (value: boolean) => void;
 }
 
-export default ({ sidebar, setSideBar }: Props) => {
+export default ({ sidebar, openCloseSideBar }: Props) => {
   return (
     <aside
       className={`${
@@ -25,7 +24,7 @@ export default ({ sidebar, setSideBar }: Props) => {
         {sidebar ? (
           <div
             className="absolute w-full h-full bg-[rgba(0,0,0,0.2)] md:hidden"
-            onClick={() => setSideBar(false)}
+            onClick={() => openCloseSideBar(false)}
           ></div>
         ) : (
           ""
@@ -42,7 +41,7 @@ export default ({ sidebar, setSideBar }: Props) => {
           >
             <button
               className="rounded-full bg-two text-three active:ring active:ring-[rgba(0,0,0,.1)]"
-              onClick={() => setSideBar((prev) => !prev)}
+              onClick={() => openCloseSideBar(!sidebar)}
             >
               <div className="p-2">
                 <FaPlay
@@ -127,17 +126,6 @@ export default ({ sidebar, setSideBar }: Props) => {
                       <FaShoppingCart className="text-xl" />
                     </div>
                     {sidebar ? "Pesanan" : ""}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/inbox"
-                    className="flex items-center hover:bg-four rounded-md active:ring active:ring-three"
-                  >
-                    <div className="p-3">
-                      <FaInbox className="text-xl" />
-                    </div>
-                    {sidebar ? "Kotak Masuk" : ""}
                   </Link>
                 </li>
                 <li>
