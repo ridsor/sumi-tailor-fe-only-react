@@ -3,11 +3,11 @@ import { ReactNode, useEffect } from "react";
 type Props = {
   children: ReactNode;
   active: boolean;
-  set: React.Dispatch<React.SetStateAction<boolean>>;
+  close: () => void;
   bg?: string;
 };
 
-export default ({ children, active, set, bg }: Props) => {
+export default ({ children, active, close, bg }: Props) => {
   useEffect(() => {
     if (active) {
       document.body.classList.add("overflow-hidden");
@@ -24,7 +24,7 @@ export default ({ children, active, set, bg }: Props) => {
     >
       <div
         className="absolute top-0 left-0 right-0 bottom-0 z-10"
-        onClick={() => set(false)}
+        onClick={close}
       ></div>
       <div className="w-full h-full overflow-auto py-5">
         <div className="mx-auto w-full  max-w-[500px] flex items-center min-h-full">

@@ -32,7 +32,6 @@ const Main = () => {
     } else {
       document.body.classList.remove("overflow-x-hidden");
     }
-    console.log("a");
   }, [location]);
 
   switch (layouts) {
