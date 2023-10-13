@@ -79,6 +79,8 @@ export default ({ active, close }: Props) => {
         }));
       }
 
+      let passwordRegex =
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
       if (!password) {
         setValidate((prev) => ({
           ...prev,
@@ -89,6 +91,12 @@ export default ({ active, close }: Props) => {
         setValidate((prev) => ({
           ...prev,
           password: "Password harus memiliki maks 100 karakter!",
+        }));
+        result = true;
+      } else if (!passwordRegex.test(password)) {
+        setValidate((prev) => ({
+          ...prev,
+          password: "Password tidak memenuhi standar keamanan!",
         }));
         result = true;
       } else {
